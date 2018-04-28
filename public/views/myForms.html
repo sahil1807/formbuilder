@@ -1,0 +1,70 @@
+<!-- Header -->
+<header class="header pb-9 pt-10" style="background-image: url(../assets/img/bg/4.jpg)" ng-init="init()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="fw-200 mb-6">My Forms</h1>
+                <p class="lead-2">All the forms created by you</p>
+
+            </div>
+        </div>
+    </div>
+</header><!-- /.header -->
+
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <section class="section overflow-hidden bg-gray" style="padding-top: 50px">
+        <div class="container">
+
+            <div class="row gap-y gap-2" data-shuffle="list">
+
+                <div class="col-md-6 col-xl-4" style="padding: 20px"  data-shuffle="item" ng-repeat="form in forms">
+                    <div class="product-3 mb-3">
+                        <a class="product-media" href="item.html">
+                            <img src="../images/service.jpg"  style="max-height: 140px" alt="product">
+                        </a>
+                        <div class="product-detail">
+
+                            <p><a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">{{form.time}}</a></p>
+                            <h6><a href="#">{{form.name}}</a></h6>
+                            <div class="product-price">{{form.description}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-show="!forms">
+
+                    <h4 style="padding-left: 60px"> No Data found for current search element</h4>
+
+                </div>
+
+            </div>
+
+            <nav class="mt-7">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">
+                            <span class="fa fa-angle-left"></span>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <span class="fa fa-angle-right"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+
+
+</main>

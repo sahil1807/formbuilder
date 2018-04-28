@@ -1,0 +1,26 @@
+{
+  "name": "createTicket",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Sahil Arora <sahil1807@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.9",
+    "angular-ui-router": "^1.0.15",
+    "jquery": "^3.3.1",
+    "angular-medium-editor": "^1.2.1",
+    "medium-editor-insert-plugin": "^2.5.0",
+    "angular-medium-editor-insert-plugin": "^0.1.19",
+    "angular-dragdrop": "^1.0.13"
+  }
+}

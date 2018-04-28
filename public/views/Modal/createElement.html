@@ -1,0 +1,43 @@
+<!-- Modal -->
+<div class="modal fade" id="createElemModal" tabindex="-1" role="dialog" aria-labelledby="createElemLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align: center; padding-top: 20px">
+                <div class="panel-body" style="height:400px;overflow:auto;">
+                <form class="form" ng-submit="saveField()">
+                <div class="form-group">
+                <label for="newField-name">Field Name:</label> <input type="text"
+                class="form-control" id="newField-name" ng-model="newField.name" ng:required>
+                </div>
+                <div class="form-group">
+                <label>Required: <input
+                type="checkbox" id="newField-required"
+                ng-model="newField.required">
+                </label>
+                </div>
+
+                <div class="form-group">
+                <label for="newField-order">Order Weight:</label> <input
+                class="form-control" type="number" id="newField-order" ng-model="newField.order"
+                value="0" ng-required placeholder="0">
+                </div>
+                <div class="form-group">
+                <label for="newField-type">Field Type:</label> <select
+                class="form-control" id="newField-type" ng-model="newField.type" ng-required>
+                <option value="text" selected>Text</option>
+                <option value="textarea">Paragraph(s)</option>
+                <option value="phone">Phone</option>
+                <option value="email">Email</option>
+                <option value="header">Heading</option>
+                <option value="password">Password</option>
+                </select>
+                </div>
+                <div>
+                <input class="btn btn-warning"type="submit" value="Create New Field"  data-dismiss="modal" aria-label="Close">
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

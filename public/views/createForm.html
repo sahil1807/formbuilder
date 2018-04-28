@@ -1,0 +1,226 @@
+<!-- Header -->
+<header class="header pb-9 pt-10" style="background-image: url(../assets/img/bg/4.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="fw-200 mb-6">New Form</h1>
+                <p class="lead-2">Create a new Form using our new form builder </p>
+
+            </div>
+        </div>
+    </div>
+</header><!-- /.header -->
+
+
+<main class="main-content">
+
+    <section class="section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h3 class="text-center mb-5" style="margin-top: -20px">Create a new Form</h3>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-outline-danger" ng-click="saveForm()">Save</button>
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#previewModal">Preview</button>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel panel-primary animated fadeInLeft">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Form Builder</h3>
+                                <div class="form-group">
+                                    <label>Form Number</label>
+                                    <input class="form-control" type="text" placeholder="Form Number" ng-model="formNumber" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input class="form-control" type="text" placeholder="Name" ng-model="name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input class="form-control" placeholder="Description about form" ng-model="description" required>
+                                </div>
+
+                                <p class="text-center"> Select elements from below</p>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-outline-primary mt-4" id="TextField" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('text')" draggable="true" ondragstart="drag(event)">
+                                    Text Field</button>
+                                <button type="button" class="btn btn-outline-danger mt-4" id="HeaderField" data-toggle="modal" data-target="#createElemModal"  ng-click="setTypeValue('heading')">Heading</button>
+                                <button type="button" class="btn btn-outline-primary mt-4" id="EmailField" data-toggle="modal" data-target="#createElemModal"  ng-click="setTypeValue('email')">Email</button>
+                                <button type="button" class="btn btn-outline-danger mt-4" id="TextArea" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('textarea')">TextArea</button>
+                                <button type="button" class="btn btn-outline-primary mt-4" id="Password" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('password')">Password</button>
+                                <button type="button" class="btn btn-outline-danger mt-4" id="Button" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('button')">Button</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="panel panel-primary animated fadeInRight" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Form Preview</h3>
+                            </div>
+                            <div class="panel-body" style="height:400px;overflow:auto;">
+                                <div ng-repeat="field in fields | orderBy:'order'">
+                                    <ng-switch on="field.type">
+                                        <h3 ng-switch-when="header" class="animated fadeInRight">
+                                            {{field.order}} {{field.name}}
+                                            <!--<button class="btn btn-warning btn-xs" ng-click="editField(field)">Edit</button>-->
+                                            <!--<button class="btn btn-danger btn-xs" ng-click="splice(field, fields)">Remove</button>-->
+                                        </h3>
+                                        <div ng-switch-default class="input {{field.type}}"
+                                             ng-class="field.required && 'required'">
+                                            <div class="form-group">
+                                                <label>
+                                                    {{field.order}} . {{field.name}}
+                                                    <!--<button class="btn btn-warning btn-xs" ng-click="editField(field)">Edit</button>-->
+                                                    <!--<button class="btn btn-danger btn-xs" ng-click="splice(field, fields)">Remove</button>-->
+                                                </label>
+
+                                                <ng-switch on="field.type">
+                                                    <input class="form-control animated fadeInRight" ng-switch-default
+                                                           type="{{field.type}}" ng-model="field.value"
+                                                           ng-bind-attr="{required:'{{field.required}}'}"
+                                                           value="{{field.value}}" placeholder="{{field.placeholder}}">
+                                                    <textarea class="form-control animated fadeInRight"
+                                                              ng-switch-when="textarea" ng-model="field.value"
+                                                              placeholder="{{field.instructions}}">{{field.value}}
+									                </textarea>
+                                                    <select class="form-control animated fadeInRight"
+                                                            ng-switch-when="select" ng-model="field.value">
+                                                        <option ng-repeat="option in field.options"
+                                                                value="{{option.value}}">{{option.name}}
+                                                        </option>
+                                                    </select>
+                                                    <select class="form-control animated fadeInRight"
+                                                            ng-switch-when="multiple" ng-model="field.value" multiple>
+                                                        <option ng-repeat="option in field.options"
+                                                                value="{{option.value}}">{{option.name}}
+                                                        </option>
+                                                    </select>
+                                                </ng-switch>
+                                            </div>
+                                        </div>
+                                    </ng-switch>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+</main>
+<div class="modal fade" id="createElemModal" tabindex="-1" role="dialog" aria-labelledby="createElemLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crerate Element</h5>
+
+            </div>
+            <div class="modal-body" style="text-align: center; padding-top: 20px">
+                <div class="panel-body" style="height:400px;overflow:auto;">
+                    <form class="form" ng-submit="saveField()">
+                        <div class="form-group">
+                            <label for="newField-name">Field Name:</label> <input type="text"
+                                                                                  class="form-control" id="newField-name" ng-model="newField.name" ng:required>
+                        </div>
+                        <div class="form-group">
+                            <label>Required: <input
+                                    type="checkbox" id="newField-required"
+                                    ng-model="newField.required">
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newField-order">Order Weight:</label> <input
+                                class="form-control" type="number" id="newField-order" ng-model="newField.order"
+                                value="0" ng-required placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="newField-type">Field Type:</label> <select
+                                class="form-control" id="newField-type" ng-model="newField.type" ng-required>
+                            <option value="text" selected>Text</option>
+                            <option value="textarea">Paragraph(s)</option>
+                            <option value="phone">Phone</option>
+                            <option value="email">Email</option>
+                            <option value="header">Heading</option>
+                            <option value="password">Password</option>
+                        </select>
+                        </div>
+                        <div>
+                            <input class="btn btn-warning" type="submit" value="Create New Field" >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="createElemLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewLabel">Preview</h5>
+
+            </div>
+            <div class="modal-body" style="padding-top: 20px">
+                <div class="panel-body" style="height:400px;overflow:auto;">
+                    <div ng-repeat="field in fields | orderBy:'order'">
+                        <ng-switch on="field.type">
+                            <h3 ng-switch-when="header" class="animated fadeInRight">
+                                {{field.order}} {{field.name}}
+                                <!--<button class="btn btn-warning btn-xs" ng-click="editField(field)">Edit</button>-->
+                                <!--<button class="btn btn-danger btn-xs" ng-click="splice(field, fields)">Remove</button>-->
+                            </h3>
+                            <div ng-switch-default class="input {{field.type}}"
+                                 ng-class="field.required && 'required'">
+                                <div class="form-group">
+                                    <label>
+                                        {{field.order}} . {{field.name}}
+                                        <!--<button class="btn btn-warning btn-xs" ng-click="editField(field)">Edit</button>-->
+                                        <!--<button class="btn btn-danger btn-xs" ng-click="splice(field, fields)">Remove</button>-->
+                                    </label>
+
+                                    <ng-switch on="field.type">
+                                        <input class="form-control animated fadeInRight" ng-switch-default
+                                               type="{{field.type}}" ng-model="field.value"
+                                               ng-bind-attr="{required:'{{field.required}}'}"
+                                               value="{{field.value}}" placeholder="{{field.placeholder}}">
+                                        <textarea class="form-control animated fadeInRight"
+                                                  ng-switch-when="textarea" ng-model="field.value"
+                                                  placeholder="{{field.instructions}}">{{field.value}}
+									                </textarea>
+                                        <select class="form-control animated fadeInRight"
+                                                ng-switch-when="select" ng-model="field.value">
+                                            <option ng-repeat="option in field.options"
+                                                    value="{{option.value}}">{{option.name}}
+                                            </option>
+                                        </select>
+                                        <select class="form-control animated fadeInRight"
+                                                ng-switch-when="multiple" ng-model="field.value" multiple>
+                                            <option ng-repeat="option in field.options"
+                                                    value="{{option.value}}">{{option.name}}
+                                            </option>
+                                        </select>
+                                    </ng-switch>
+                                </div>
+                            </div>
+                        </ng-switch>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

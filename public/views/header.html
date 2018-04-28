@@ -1,0 +1,48 @@
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <div class="navbar-left mr-4">
+            <button class="navbar-toggler" type="button">&#9776;</button>
+            <a class="navbar-brand" ui-sref="app">
+                <img class="logo-dark" src="../images/logo.png" alt="logo" style="width: 150px; height: 35px">
+                <img class="logo-light" src="../images/logo.png" alt="logo"  style="width: 150px; height: 35px">
+            </a>
+        </div>
+
+        <section class="navbar-mobile">
+            <nav class="nav nav-navbar nav-text-normal mr-auto">
+                <a class="nav-link" href="#"  ng-if="$root.isLoggedIn" ui-sref="app.myForms">My Forms</a>
+                <a class="nav-link" href="#"  ng-if="!$root.isLoggedIn">Contact</a>
+                <a class="nav-link" href="#" style="color: orangered" ui-sref="app.create" ng-if="$root.isLoggedIn">New Form</a>
+            </nav>
+
+            <div class="d-flex align-items-center"  ng-if="!$root.isLoggedIn">
+                <a class="btn btn-sm btn-success" href="#" ui-sref="app.signup">Sign up</a>
+                <a class="btn btn-sm btn-link text-dark ml-lg-5 mr-2" href="#" ui-sref="app.login">Login</a>
+
+                <a class="text-lighter" href="#" data-toggle="offcanvas" data-target="#offcanvas-search"><i class="ti-search"></i></a>
+            </div>
+
+            <div class="col-4 col-lg-5 text-right" ng-if="$root.isLoggedIn">
+                <div class="nav-link text-success">{{$root.user.displayName}}
+                    <div class="btn-group open-on-hover">
+                        <span class="dropdown-toggle no-caret iconbox text-white bg-success iconbox-sm" style="margin-left: 7px" data-toggle="dropdown">
+                            <i class="fa fa-chevron-down"></i>
+                        </span>
+                        <div class="dropdown-menu" style="left: -130px">
+                            <a class="dropdown-item" href="#" ui-sref="app.allTickets">All Tickets</a>
+                            <a class="dropdown-item" ui-sref="app.myTickets">My Tickets</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" ng-click="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</nav><!-- /.navbar -->
+
+

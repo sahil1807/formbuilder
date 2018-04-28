@@ -1,0 +1,64 @@
+<div class="layout-centered bg-img" style="background-image: url(../assets/img/bg/4.jpg); padding: 30px; height: 100vh">
+    <main class="main-content" style="height: 100%">
+
+        <div class="bg-white rounded shadow-7 w-400 mw-100 p-6">
+            <h5 class="mb-7">Sign into your account</h5>
+
+            <form ng-submit="login()">
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email" ng-model="email" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" ng-model="password" required>
+                </div>
+
+                <div class="form-group flexbox py-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked>
+                        <label class="custom-control-label">Remember me</label>
+                    </div>
+
+                    <a class="text-muted small-2" ui-sref="app.forgot" href="#">Forgot password?</a>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-block btn-primary" type="submit">Login</button>
+                </div>
+            </form>
+
+            <hr class="w-30">
+
+            <p class="text-center text-muted small-2">Don't have an account? <a ui-sref="app.signup">Register here</a></p>
+        </div>
+
+    </main>
+</div>
+
+
+<button id="successPopup" class="btn btn-primary" type="button" data-toggle="popup" data-target="#success-popup" style="display: none;">Slide Down</button>
+
+<div id="success-popup" data-autohide="4500" class="popup col-6 col-md-4" data-position="top-right" data-animation="slide-down">
+    <button type="button" class="close" data-dismiss="popup" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="media">
+        <div class="media-body">
+            <p class="mb-0 text-success">{{message}}</p>
+        </div>
+    </div>
+</div>
+
+
+<button id="errorPopup" class="btn btn-primary" type="button" data-toggle="popup" data-target="#error-popup" style="display: none;">Slide Down</button>
+
+<div id="error-popup" data-autohide="5000" class="popup col-6 col-md-4" data-position="top-right" data-animation="slide-down">
+    <button type="button" class="close" data-dismiss="popup" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="media">
+        <div class="media-body">
+            <p class="mb-0 text-danger">{{message}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="formBuilder">
+<head>
+    <meta charset="utf-8">
+    <base href="/">
+    <title>BillTrim Form builder</title>
+    <link href="./assets/css/page.min.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./styles/style.css">
+    <link  type="text/css" rel="stylesheet" href="./bower_components/medium-editor/dist/css/medium-editor.css">
+    <link  type="text/css" rel="stylesheet" href="./bower_components/medium-editor/dist/css/themes/default.css">
+    <link  type="text/css" rel="stylesheet" href="./bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
+    <link rel="icon" href="images/favicon.jpg">
+
+</head>
+<body ng-controller="IndexController">
+
+
+<main ui-view="header"></main>
+<main ui-view="content"></main>
+<main ui-view="footer"></main>
+
+
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./bower_components/medium-editor/dist/js/medium-editor.js"></script>
+    <script src="./bower_components/angular-medium-editor/dist/angular-medium-editor.js"></script>
+    <script src="./bower_components/angular-medium-editor-insert-plugin/dist/angular-medium-editor-insert-plugin.js"></script>
+    <script src="./bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+
+    <!-- JS -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/commonControllers.js"></script>
+    <script src="scripts/controllers/headerController.js"></script>
+    <script src="scripts/controllers/homePageController.js"></script>
+    <script src="scripts/controllers/createFormController.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/signupController.js"></script>
+    <script src="scripts/controllers/myFormsController.js"></script>
+    <script src="scripts/controllers/createElementController.js"></script>
+
+    <script src="scripts/services/authService.js"></script>
+    <script src="scripts/services/formService.js"></script>
+
+
+    <script src="scripts/directives/commonDirectives.js"></script>
+
+    <script src="./assets/js/page.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+</body>
+</html>
