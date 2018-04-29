@@ -1,4 +1,4 @@
-var formBuilder = angular.module('formBuilder', ['ui.router', 'angular-medium-editor', 'angular-medium-editor-insert-plugin' ]);
+var formBuilder = angular.module('formBuilder', ['ui.router', 'angular-medium-editor', 'angular-medium-editor-insert-plugin' , 'ngDragDrop' ]);
 
 formBuilder.constant('ENV',
     // Production
@@ -80,7 +80,7 @@ formBuilder.config(function ($stateProvider, $urlRouterProvider, $locationProvid
 
 
         .state('app.create',{
-            url:'create',
+            url:'create/:formId',
             views: {
                 'content@': {
                     templateUrl: 'views/createForm.html',

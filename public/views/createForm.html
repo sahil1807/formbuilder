@@ -12,7 +12,7 @@
 </header><!-- /.header -->
 
 
-<main class="main-content">
+<main class="main-content" ng-init="init()">
 
     <section class="section">
         <div class="container">
@@ -50,13 +50,12 @@
                             </div>
 
                             <div>
-                                <button type="button" class="btn btn-outline-primary mt-4" id="TextField" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('text')" draggable="true" ondragstart="drag(event)">
-                                    Text Field</button>
-                                <button type="button" class="btn btn-outline-danger mt-4" id="HeaderField" data-toggle="modal" data-target="#createElemModal"  ng-click="setTypeValue('heading')">Heading</button>
-                                <button type="button" class="btn btn-outline-primary mt-4" id="EmailField" data-toggle="modal" data-target="#createElemModal"  ng-click="setTypeValue('email')">Email</button>
-                                <button type="button" class="btn btn-outline-danger mt-4" id="TextArea" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('textarea')">TextArea</button>
-                                <button type="button" class="btn btn-outline-primary mt-4" id="Password" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('password')">Password</button>
-                                <button type="button" class="btn btn-outline-danger mt-4" id="Button" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('button')">Button</button>
+                                <div class="btn btn-outline-primary mt-4" id="TextField" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('text')" data-drag="true"  jqyoui-draggable="{animate:true}" ng-model="list1"  data-jqyoui-options="{revert: 'invalid'}" >Text Field</div>
+                                <div class="btn btn-outline-danger mt-4" id="HeaderField" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('heading')" data-drag="true"  jqyoui-draggable="{animate:true}" ng-model="list1"  data-jqyoui-options="{revert: 'invalid'}" >Heading</div>
+                                <div class="btn btn-outline-primary mt-4" id="EmailField" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('email')" data-drag="true"  jqyoui-draggable="{animate:true}" ng-model="list1"  data-jqyoui-options="{revert: 'invalid'}" >Email</div>
+                                <div class="btn btn-outline-danger mt-4" id="TextArea" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('textarea')" data-drag="true"  jqyoui-draggable="{animate:true}" ng-model="list1"  data-jqyoui-options="{revert: 'invalid'}" >Area</div>
+                                <div class="btn btn-outline-primary mt-4" id="Password" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('password')" data-drag="true"  jqyoui-draggable="{animate:true}" ng-model="list1"  data-jqyoui-options="{revert: 'invalid'}" >Password</div>
+                                <div class="btn btn-outline-danger mt-4" id="Button" data-toggle="modal" data-target="#createElemModal" ng-click="setTypeValue('button')" data-drag="true"  jqyoui-draggable="{animate:true}" ng-model="list1"  data-jqyoui-options="{revert: 'invalid'}" >Button</div>
                             </div>
                         </div>
                     </div>
@@ -68,7 +67,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Form Preview</h3>
                             </div>
-                            <div class="panel-body" style="height:400px;overflow:auto;">
+                            <div class="panel-body" style="height:400px;overflow:auto;" data-drop="true" data-jqyoui-options ng-model="list2" jqyoui-droppable="{onDrop: test()}">
                                 <div ng-repeat="field in fields | orderBy:'order'">
                                     <ng-switch on="field.type">
                                         <h3 ng-switch-when="header" class="animated fadeInRight">
@@ -94,18 +93,9 @@
                                                               ng-switch-when="textarea" ng-model="field.value"
                                                               placeholder="{{field.instructions}}">{{field.value}}
 									                </textarea>
-                                                    <select class="form-control animated fadeInRight"
-                                                            ng-switch-when="select" ng-model="field.value">
-                                                        <option ng-repeat="option in field.options"
-                                                                value="{{option.value}}">{{option.name}}
-                                                        </option>
-                                                    </select>
-                                                    <select class="form-control animated fadeInRight"
-                                                            ng-switch-when="multiple" ng-model="field.value" multiple>
-                                                        <option ng-repeat="option in field.options"
-                                                                value="{{option.value}}">{{option.name}}
-                                                        </option>
-                                                    </select>
+                                                    <btn class="form-control animated fadeInRight btn-primary cursor-pointer text-center w-20"
+                                                         ng-switch-when="button">{{field.name}}
+                                                    </btn>
                                                 </ng-switch>
                                             </div>
                                         </div>
@@ -150,7 +140,7 @@
                                 class="form-control" id="newField-type" ng-model="newField.type" ng-required>
                             <option value="text" selected>Text</option>
                             <option value="textarea">Paragraph(s)</option>
-                            <option value="phone">Phone</option>
+                            <option value="button">Button</option>
                             <option value="email">Email</option>
                             <option value="header">Heading</option>
                             <option value="password">Password</option>
@@ -200,18 +190,9 @@
                                                   ng-switch-when="textarea" ng-model="field.value"
                                                   placeholder="{{field.instructions}}">{{field.value}}
 									                </textarea>
-                                        <select class="form-control animated fadeInRight"
-                                                ng-switch-when="select" ng-model="field.value">
-                                            <option ng-repeat="option in field.options"
-                                                    value="{{option.value}}">{{option.name}}
-                                            </option>
-                                        </select>
-                                        <select class="form-control animated fadeInRight"
-                                                ng-switch-when="multiple" ng-model="field.value" multiple>
-                                            <option ng-repeat="option in field.options"
-                                                    value="{{option.value}}">{{option.name}}
-                                            </option>
-                                        </select>
+                                        <btn class="form-control animated fadeInRight btn-primary cursor-pointer text-center w-20"
+                                                ng-switch-when="button">{{field.name}}
+                                        </btn>
                                     </ng-switch>
                                 </div>
                             </div>

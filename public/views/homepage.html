@@ -10,9 +10,8 @@
                 </h1>
                 <p class="lead mt-5 mb-8">Form Builder is an extension tool manager for managing service request, new feature requests and bug reporting for existing features.</p>
                 <a class="btn btn-round btn-primary w-200" href="#" ng-if="!$root.isLoggedIn">Login</a>
-                <a class="btn btn-round btn-primary w-200" href="#"ng-if="$root.isLoggedIn">My Forms</a>
-                <a class="btn btn-round btn-outline-secondary w-200 ml-3" href="#aboutUs" ng-if="!$root.isLoggedIn">Learn more</a>
-                <a class="btn btn-round btn-outline-secondary w-200 ml-3" href="#" ng-if="$root.isLoggedIn">New Form</a>
+                <a class="btn btn-round btn-primary w-200" ui-sref="app.myForms" ng-if="$root.isLoggedIn">My Forms</a>
+                <a class="btn btn-round btn-outline-secondary w-200 ml-3" ng-click="createForm()" ng-if="$root.isLoggedIn">New Form</a>
             </div>
 
             <div class="col-md-6 ml-auto">

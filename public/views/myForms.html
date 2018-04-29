@@ -20,9 +20,9 @@
 
             <div class="row gap-y gap-2" data-shuffle="list">
 
-                <div class="col-md-6 col-xl-4" style="padding: 20px"  data-shuffle="item" ng-repeat="form in forms">
-                    <div class="product-3 mb-3">
-                        <a class="product-media" href="item.html">
+                <div class="col-md-6 col-xl-4 cursor-pointer" style="padding: 20px"  data-shuffle="item" ng-repeat="form in forms">
+                    <div class="product-3 mb-3" ng-click="getForm(form.formNumber)">
+                        <a class="product-media">
                             <img src="../images/service.jpg"  style="max-height: 140px" alt="product">
                         </a>
                         <div class="product-detail">
@@ -66,5 +66,59 @@
         </div>
     </section>
 
-
 </main>
+
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="createElemLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewLabel">Preview</h5>
+
+            </div>
+            <div class="modal-body" style="padding-top: 20px">
+                <div class="panel-body" style="height:400px;overflow:auto;">
+                    <div ng-repeat="field in fields | orderBy:'order'">
+                        <ng-switch on="field.type">
+                            <h3 ng-switch-when="header" class="animated fadeInRight">
+                                {{field.order}} {{field.name}}
+                                <!--<button class="btn btn-warning btn-xs" ng-click="editField(field)">Edit</button>-->
+                                <!--<button class="btn btn-danger btn-xs" ng-click="splice(field, fields)">Remove</button>-->
+                            </h3>
+                            <div ng-switch-default class="input {{field.type}}"
+                                 ng-class="field.required && 'required'">
+                                <div class="form-group">
+                                    <label>
+                                        {{field.order}} . {{field.name}}
+                                        <!--<button class="btn btn-warning btn-xs" ng-click="editField(field)">Edit</button>-->
+                                        <!--<button class="btn btn-danger btn-xs" ng-click="splice(field, fields)">Remove</button>-->
+                                    </label>
+
+                                    <ng-switch on="field.type">
+                                        <input class="form-control animated fadeInRight" ng-switch-default
+                                               type="{{field.type}}" ng-model="field.value"
+                                               ng-bind-attr="{required:'{{field.required}}'}"
+                                               value="{{field.value}}" placeholder="{{field.placeholder}}">
+                                        <textarea class="form-control animated fadeInRight"
+                                                  ng-switch-when="textarea" ng-model="field.value"
+                                                  placeholder="{{field.instructions}}">{{field.value}}
+									                </textarea>
+                                        <btn class="form-control animated fadeInRight btn-primary cursor-pointer text-center w-20"
+                                             ng-switch-when="button">{{field.name}}
+                                        </btn>
+                                    </ng-switch>
+                                </div>
+                            </div>
+                        </ng-switch>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" ng-click="editForm()">Edit</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

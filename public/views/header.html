@@ -14,15 +14,13 @@
         <section class="navbar-mobile">
             <nav class="nav nav-navbar nav-text-normal mr-auto">
                 <a class="nav-link" href="#"  ng-if="$root.isLoggedIn" ui-sref="app.myForms">My Forms</a>
-                <a class="nav-link" href="#"  ng-if="!$root.isLoggedIn">Contact</a>
-                <a class="nav-link" href="#" style="color: orangered" ui-sref="app.create" ng-if="$root.isLoggedIn">New Form</a>
+                <a class="nav-link" href="#" style="color: orangered" ng-click="createForm()" ng-if="$root.isLoggedIn">New Form</a>
             </nav>
 
             <div class="d-flex align-items-center"  ng-if="!$root.isLoggedIn">
                 <a class="btn btn-sm btn-success" href="#" ui-sref="app.signup">Sign up</a>
                 <a class="btn btn-sm btn-link text-dark ml-lg-5 mr-2" href="#" ui-sref="app.login">Login</a>
 
-                <a class="text-lighter" href="#" data-toggle="offcanvas" data-target="#offcanvas-search"><i class="ti-search"></i></a>
             </div>
 
             <div class="col-4 col-lg-5 text-right" ng-if="$root.isLoggedIn">
@@ -32,8 +30,7 @@
                             <i class="fa fa-chevron-down"></i>
                         </span>
                         <div class="dropdown-menu" style="left: -130px">
-                            <a class="dropdown-item" href="#" ui-sref="app.allTickets">All Tickets</a>
-                            <a class="dropdown-item" ui-sref="app.myTickets">My Tickets</a>
+                            <a class="dropdown-item" ui-sref="app.myForms">My Forms</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" ng-click="logout()">Logout</a>
                         </div>

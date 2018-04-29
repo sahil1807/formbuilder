@@ -4,17 +4,35 @@ formBuilder.controller('CreateFormController', ['$http', '$scope', '$stateParams
     $scope.loading = false;
     $scope.error = false;
 
-    $scope.randomNumber = Math.floor(100000 + Math.random() * 900000);
-    $scope.formNumber = "FN" + $scope.randomNumber;
 
+    $scope.init = function () {
+        $scope.formNumber = $stateParams.formId;
+        FormService.getForm($scope.formNumber)
+            .then(function (res) {
+            if(!res.data){
 
-    $scope.newField = {};
-    $scope.fields = [ {
-        type : 'text',
-        name : 'Name',
-        placeholder : 'Please enter your name',
-        order : 1
-    } ];
+                $scope.initial = true;
+                $scope.newField = {};
+                $scope.fields = [ {
+                    type : 'text',
+                    name : 'Name',
+                    placeholder : 'Please enter your name',
+                    order : 1
+                } ];
+            }
+            else{
+                $scope.name = res.data.name;
+                $scope.description = res.data.description;
+                $scope.fields = res.data.elements;
+                $scope.forms = $rootScope.userInfo.forms;
+                $scope.initial = false;
+                $scope.newField = {};
+            }
+        }, function (error) {
+            $scope.status = 'Unable to load all forms data: ' + error.message;
+        });
+
+    }
 
     $scope.setTypeValue = function (type) {
         $scope.newField.type = type;
@@ -68,11 +86,22 @@ formBuilder.controller('CreateFormController', ['$http', '$scope', '$stateParams
 
         };
 
-        FormService.createForm(data);
+        if($scope.initial)
+            FormService.createForm(data);
+        else
+            FormService.editForm(data);
     }
 
-    function drag(ev) {
-        console.log("test");
+
+        $scope.list1 = {title: 'AngularJS - Drag Me'};
+        $scope.list2 = {};
+
+        $scope.draggableCount = 0;
+    $scope.test = function () {
+        if($scope.draggableCount >0)
+        $('#createElemModal').modal('show');
+
+        $scope.draggableCount++;
     }
 
 

@@ -1,4 +1,4 @@
-formBuilder.controller('MyFormsController', ['$http', '$scope', '$stateParams', '$state', '$rootScope', '$compile' ,  'ENV' , 'AuthService' ,  function ($http, $scope, $stateParams, $state, $rootScope , $compile , ENV , AuthService) {
+formBuilder.controller('MyFormsController', ['$http', '$scope', '$stateParams', '$state', '$rootScope', '$compile' ,  'ENV' , 'AuthService', 'FormService' ,  function ($http, $scope, $stateParams, $state, $rootScope , $compile , ENV , AuthService , FormService) {
 
 
     $scope.init = function () {
@@ -20,5 +20,24 @@ formBuilder.controller('MyFormsController', ['$http', '$scope', '$stateParams', 
         }
     };
 
+    $scope.getForm = function (id) {
+
+        $scope.formId = id;
+        FormService.getForm(id)
+            .then(function (res) {
+                $scope.forms = res.data;
+                $scope.fields = res.data.elements;
+                console.log($scope.forms);
+                $('#previewModal').modal('show');
+                $scope.forms = $rootScope.userInfo.forms;
+            }, function (error) {
+                $scope.status = 'Unable to load all forms data: ' + error.message;
+            });
+    };
+
+    $scope.editForm = function () {
+        $('#previewModal').modal('hide');
+        $state.go('app.create' , {formId : $scope.formId});
+    }
 
 }]);
